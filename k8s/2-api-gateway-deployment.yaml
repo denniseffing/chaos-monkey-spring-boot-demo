@@ -20,5 +20,11 @@ spec:
         name: gateway
         ports:
         - containerPort: 8080
-        resources: {}
+        env:
+          - name: REST_ENDPOINT_FASHION
+            value: http://fashion:8082/fashion/bestseller
+          - name: REST_ENDPOINT_TOYS
+            value: http://toys:8081/toys/bestseller
+          - name: REST_ENDPOINT_HOTDEALS
+            value: http://hotdeals:8083/hotdeals
       restartPolicy: Always
