@@ -13,7 +13,7 @@ spec:
     - uri:
         prefix: /
     rewrite:
-      uri: /startpage
+      uri: /startpage/istio
     route:
     - destination:
         host: gateway.shopping-demo.svc.cluster.local

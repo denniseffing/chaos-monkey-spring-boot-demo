@@ -70,11 +70,39 @@ public class StartPageController {
                 return getStartpageCircuitBreaker();
             } else if (version.get().equalsIgnoreCase("lb")) {
                 return getStartpageLoadBalanced();
+            } else if (version.get().equalsIgnoreCase("istio")) {
+                return getStartpageIstio();
             }
         }
         //default landing
         return getStartpageLegacy();
 
+    }
+
+    private Mono<Startpage> getStartpageIstio() {
+        long start = System.currentTimeMillis();
+
+        Mono<ProductResponse> hotdeals = webClient.get().uri("/hotdeals").exchange().flatMap(responseProcessor)
+                                                  .doOnError(t -> {
+                                                      System.out.println("on error");
+                                                  })
+                                                  .onErrorResume(t -> {
+                                                      System.out.println("on error resume");
+                                                      t.printStackTrace();
+                                                      return Mono.just(errorResponse);
+                                                  });
+        Mono<ProductResponse> fashionBestSellers = webClient.get().uri("/fashion/bestseller").exchange().flatMap(responseProcessor)
+                                                            .onErrorResume(t -> {
+                                                                t.printStackTrace();
+                                                                return Mono.just(errorResponse);
+                                                            });
+        Mono<ProductResponse> toysBestSellers = webClient.get().uri("/toys/bestseller").exchange().flatMap(responseProcessor)
+                                                         .onErrorResume(t -> {
+                                                             t.printStackTrace();
+                                                             return Mono.just(errorResponse);
+                                                         });
+
+        return aggregateResults(start, hotdeals, fashionBestSellers, toysBestSellers);
     }
 
 
