@@ -16,7 +16,8 @@ spec:
         component: toys
     spec:
       containers:
-      - image: docker.io/mrbwilms/bestseller-toys:latest
+      - image: docker.io/denniseffing/bestseller-toys:istio-demo
+        imagePullPolicy: Always
         name: toys
         ports:
         - containerPort: 8081

@@ -16,7 +16,8 @@ spec:
         component: fashion
     spec:
       containers:
-      - image: docker.io/mrbwilms/bestseller-fashion:latest
+      - image: docker.io/denniseffing/bestseller-fashion:istio-demo
+        imagePullPolicy: Always
         name: fashion
         ports:
         - containerPort: 8082

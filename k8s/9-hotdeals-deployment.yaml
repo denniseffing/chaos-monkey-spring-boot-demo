@@ -16,7 +16,8 @@ spec:
         component: hotdeals
     spec:
       containers:
-      - image: docker.io/mrbwilms/hot-deals:latest
+      - image: docker.io/denniseffing/hot-deals:istio-demo
+        imagePullPolicy: Always
         name: hotdeals
         ports:
         - containerPort: 8083
