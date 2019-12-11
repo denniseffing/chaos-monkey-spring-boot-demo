@@ -1,15 +1,19 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: shopping-demo
   name: api-gateway
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: shopping-demo
+      component: gateway
   template:
     metadata:
       labels:
-        shopping.demo.service: gateway
+        app: shopping-demo
+        component: gateway
     spec:
       containers:
       - image: docker.io/mrbwilms/gateway:latest
@@ -18,4 +22,3 @@ spec:
         - containerPort: 8080
         resources: {}
       restartPolicy: Always
-status: {}

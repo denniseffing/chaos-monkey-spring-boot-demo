@@ -9,6 +9,5 @@ spec:
     port: 8080
     targetPort: 8080
   selector:
-    shopping.demo.service: gateway
-status:
-  loadBalancer: {}
+    app: shopping-demo
+    component: gateway

@@ -9,6 +9,5 @@ spec:
     port: 8083
     targetPort: 8083
   selector:
-    shopping.demo.service: hotdeals
-status:
-  loadBalancer: {}
+    app: shopping-demo
+    component: hotdeals

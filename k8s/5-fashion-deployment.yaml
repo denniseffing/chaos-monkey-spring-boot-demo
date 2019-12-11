@@ -1,15 +1,19 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: shopping-demo
   name: fashion
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: shopping-demo
+      component: fashion
   template:
     metadata:
       labels:
-        shopping.demo.service: fashion
+        app: shopping-demo
+        component: fashion
     spec:
       containers:
       - image: docker.io/mrbwilms/bestseller-fashion:latest
@@ -18,4 +22,3 @@ spec:
         - containerPort: 8082
         resources: {}
       restartPolicy: Always
-status: {}

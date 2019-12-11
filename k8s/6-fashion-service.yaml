@@ -9,6 +9,5 @@ spec:
     port: 8082
     targetPort: 8082
   selector:
-    shopping.demo.service: fashion
-status:
-  loadBalancer: {}
+    app: shopping-demo
+    component: fashion

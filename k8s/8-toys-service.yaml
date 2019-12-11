@@ -9,6 +9,5 @@ spec:
     port: 8081
     targetPort: 8081
   selector:
-    shopping.demo.service: toys
-status:
-  loadBalancer: {}
+    app: shopping-demo
+    component: toys
