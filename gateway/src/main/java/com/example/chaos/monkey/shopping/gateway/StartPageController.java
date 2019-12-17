@@ -7,6 +7,7 @@ import com.example.chaos.monkey.shopping.gateway.domain.ResponseType;
 import com.example.chaos.monkey.shopping.gateway.domain.Startpage;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -90,7 +91,7 @@ public class StartPageController {
     private Function<ClientResponse, Mono<ProductResponse>> responseProcessor = clientResponse -> {
         HttpHeaders headers = clientResponse.headers().asHttpHeaders();
 
-        if (headers.containsKey("fallback") && headers.get("fallback").contains("true")) {
+        if (headers.containsKey("fallback") && headers.get("fallback").contains("true") || clientResponse.statusCode() == HttpStatus.GATEWAY_TIMEOUT) {
             this.tracer.currentSpan().tag("failure", "fallback");
 
             return Mono.just(new ProductResponse(ResponseType.FALLBACK, Collections.emptyList()));
