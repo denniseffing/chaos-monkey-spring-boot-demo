@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   namespace: shopping-demo
   name: fashion
+  labels:
+    app: shopping-demo
+    component: gateway
 spec:
   replicas: 1
   selector:

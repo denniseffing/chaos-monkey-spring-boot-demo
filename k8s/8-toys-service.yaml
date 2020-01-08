@@ -3,6 +3,9 @@ kind: Service
 metadata:
   namespace: shopping-demo
   name: toys
+  labels:
+    app: shopping-demo
+    component: gateway
 spec:
   ports:
   - name: "http"

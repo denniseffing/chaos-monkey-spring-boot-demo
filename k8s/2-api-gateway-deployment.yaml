@@ -2,7 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: shopping-demo
-  name: api-gateway
+  name: gateway
+  labels:
+    app: shopping-demo
+    component: gateway
 spec:
   replicas: 1
   selector:
