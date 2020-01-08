@@ -7,11 +7,7 @@ spec:
   hosts:
   - fashion
   http:
-  - fault:
-      delay:
-        fixedDelay: 5s
-        percentage: 
-          value: 100
     route:
     - destination:
         host: fashion
+    timeout: 200ms
