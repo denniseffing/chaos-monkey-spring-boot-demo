@@ -15,4 +15,4 @@ spec:
     route:
     - destination:
         host: fashion
-    timeout: 2s
+    timeout: 200ms
