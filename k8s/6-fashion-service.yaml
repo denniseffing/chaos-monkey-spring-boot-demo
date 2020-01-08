@@ -3,12 +3,14 @@ kind: Service
 metadata:
   namespace: shopping-demo
   name: fashion
+  labels:
+    app: shopping-demo
+    component: gateway
 spec:
   ports:
   - name: "http"
     port: 8082
     targetPort: 8082
   selector:
-    shopping.demo.service: fashion
-status:
-  loadBalancer: {}
+    app: shopping-demo
+    component: fashion

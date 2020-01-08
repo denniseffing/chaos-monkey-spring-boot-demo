@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: fashion-failure
+  namespace: shopping-demo
+spec:
+  hosts:
+  - fashion
+  http:
+  - route:
+    - destination:
+        host: fashion
+    timeout: 200ms
+    fault:
+      delay:
+        fixedDelay: 5s
+        percentage: 
+          value: 100

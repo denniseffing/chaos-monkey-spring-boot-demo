@@ -1,21 +1,28 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: shopping-demo
   name: toys
+  labels:
+    app: shopping-demo
+    component: gateway
 spec:
   replicas: 1
-  strategy: {}
+  selector:
+    matchLabels:
+      app: shopping-demo
+      component: toys
   template:
     metadata:
       labels:
-        shopping.demo.service: toys
+        app: shopping-demo
+        component: toys
     spec:
       containers:
-      - image: docker.io/mrbwilms/bestseller-toys:latest
+      - image: docker.io/denniseffing/bestseller-toys:istio-demo
+        imagePullPolicy: Always
         name: toys
         ports:
         - containerPort: 8081
         resources: {}
       restartPolicy: Always
-status: {}

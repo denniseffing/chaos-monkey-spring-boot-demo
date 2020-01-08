@@ -26,19 +26,22 @@ hystrix:
   command:
     fashion:
       execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 150
+        timeout:
+          enabled: false
+        circuitBreaker:
+          enabled: false
     hotdeals:
       execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 150
+        timeout:
+          enabled: false
+        circuitBreaker:
+          enabled: false
     toys:
       execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 150
+        timeout:
+          enabled: false
+        circuitBreaker:
+          enabled: false
 rest:
   endpoint:
     fashion: "http://localhost:8082/fashion/bestseller"
