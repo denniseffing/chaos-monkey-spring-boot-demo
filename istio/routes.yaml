@@ -11,7 +11,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /
+        prefix: /startpage
     rewrite:
       uri: /startpage/istio
     route:
